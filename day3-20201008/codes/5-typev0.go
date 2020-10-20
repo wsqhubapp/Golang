@@ -1,15 +1,17 @@
-//
+//函数做为一种类型存在
 package main
 
 import "fmt"
 
+func add(a, b int) int {
+	return a + b
+}
+
 func main() {
-	// 定义函数类型变量，并使用零值nil 进行初始化
-	var callback func(n1, n2 int) (r1, r2, r3, r4 int)
-	fmt.Printf("%T, %v", callback, callback)
+	fmt.Printf("%T\n", add) // func(int, int) int
 
-	// callback = calc // 赋值为函数calc
-	fmt.Println(callback(5, 2))
-	//  ????? 无法使用
+	f := add // 本质是 var f func(int, int) int = add   函数类型 func(int, int) int 在这里整体充当一个类型
 
+	fmt.Printf("%T\n", f) // func(int, int) int
+	fmt.Println(f(3, 4))  // 7
 }
