@@ -10,7 +10,7 @@ func main() {
 	// 获取相对路径的信息（执行目录）
 	fmt.Println(".")
 	fmt.Println(filepath.Abs("."))
-	fmt.Println(os.Getwd())
+	fmt.Println(os.Getwd()) // get work dir
 
 	// 二进制程序所在的路径信息
 	fmt.Println(os.Args[0])
