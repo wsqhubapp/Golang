@@ -20,9 +20,17 @@ func main() {
 	c := f(2, 3)
 	fmt.Println(c) //5
 
-	for _, v := range fs {
+	for _, v := range fs { // fs 是一个切片
 		fmt.Printf("%T, %#v\n", v, v)
-		// fmt.Println(v(2, 3)) // 5 6
+		fmt.Println(v(2, 3)) // 5 6  # 5是函数add的结构，6是mul的结果
 	}
 
 }
+
+/*
+上面轮询的结果
+func(int, int) int, (func(int, int) int)(0x4a0260)
+5
+func(int, int) int, (func(int, int) int)(0x4a0280)
+6
+*/

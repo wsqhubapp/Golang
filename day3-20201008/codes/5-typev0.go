@@ -1,4 +1,4 @@
-//函数做为一种类型存在
+//函数作为一种类型存在
 package main
 
 import "fmt"

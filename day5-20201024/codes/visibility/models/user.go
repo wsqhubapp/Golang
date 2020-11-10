@@ -1,16 +1,30 @@
 package models
 
-// 结构体名大写  属性大写
-// 结构体名大写  属性小写
-
+// 结构体名称大写 属性名称大写
+// 结构体名称大写 属性名称小写
 type PublicStruct struct {
-	privateAttr string
-	PublicAttr  string
+	privateAttrPu string
+	PublicAttrPu  string
 }
 
-// 结构体名小写  属性大写
-// 结构体名小写  属性小写
-type privatStruct struct {
-	privateAttr string
-	PublicAttr  string
+//结构体名称小写  属性名称大写
+//结构体名称小写 属性名称小写
+type privateStruct struct {
+	privateAttrPr string
+	PublicAttrPr  string
+}
+
+func NewPrivateStruct() *privateStruct {
+	return &privateStruct{}
+}
+
+/*
+type CombindStruct struct {
+	PublicAttr  PublicStruct
+	PrivateAttr privateStruct
+}
+*/
+type CombindStruct struct {
+	PublicStruct
+	privateStruct
 }

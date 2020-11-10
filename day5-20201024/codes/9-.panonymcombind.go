@@ -24,21 +24,18 @@ type Tel struct {
 type User struct {
 	id    int
 	name  string
-	*Addr // 只指定类型  、、会定义属性名
+	*Addr // 只指定类型
 	*Tel
 	birthday time.Time
 }
 
 func main() {
-	// var user User
-
-	// fmt.Printf("%T, %#v\n", user, user)
-
 	var user User = User{Addr: &Addr{province: "山东省"}}
 	fmt.Printf("%T, %#v\n", user, user)
-
-	fmt.Println(user.province)
+	//main.User, main.User{id:0, name:"", Addr:(*main.Addr)(0xc00006c330), Tel:(*main.Tel)(nil), birthday:time.Time{wall:0x0, ext:0, loc:(*time.Location)(nil)}}
+	// 关注这种写法  和显示的结果
+	fmt.Println(user.province) // 山东省
 	user.province = "beijingshi"
-	fmt.Println(user.province)
+	fmt.Println(user.province) //beijingshi
 
 }

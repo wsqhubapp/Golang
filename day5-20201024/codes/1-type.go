@@ -1,3 +1,4 @@
+// 1 自定义类型
 package main
 
 import "fmt"
@@ -10,7 +11,9 @@ type Counter int
 
 type User map[string]string
 
-type Callbakck func()
+type Callback func() error
+
+type Counter2 Counter
 
 func main() {
 	var name Counter
@@ -27,13 +30,18 @@ func main() {
 
 	var user User = make(User) //初始化
 
-	fmt.Printf("%T, %v\n", user, user) //main.User, map[]
+	fmt.Printf("%T, %#v\n", user, user) //main.User, main.User{}  # 空的main.User{}
+	user["id"] = "1"                    //赋值
+	fmt.Println(user)                   //map[id:1]   打印出值
 
-	calllback := map[string]Callback{}
+	callbacks := map[string]Callback{} // 声明一个callbacks
+	callbacks["add"] = func() error {  // 赋值为一个函数
+		fmt.Println("add")
+		return nil
+	}
+	callbacks["add"]() //add 函数调用
 
-	callbacks
-
-	var c22 Counter2
-	fmt.printf("%T, %v\n", c22, c22)
+	var c22 Counter2                 //声明一个变量  只是类型是一个自定义类型
+	fmt.Printf("%T, %v\n", c22, c22) //main.Counter2, 0
 
 }

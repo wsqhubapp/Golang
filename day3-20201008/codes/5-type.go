@@ -18,7 +18,7 @@ func sayHello() {
 	fmt.Println("hello")
 }
 
-func genFunc() func() {
+func genFunc() func() { //返回值是一个函数类型 判断情况是奇数和偶数
 	if rand.Int()%2 == 0 {
 		return sayHi
 	}
