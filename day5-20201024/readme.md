@@ -1,5 +1,5 @@
-methodsv0 是一个方法的认识的基础，方法和函数的对比
-methods  methodsv1 是两者的一个对比
+methodsv0 是一个方法的认识的基础，方法和函数的对比  #自己的整理
+methods  methodsv1 是两者的一个对比  # 这是老师的讲解
 
 
 结构体 类似类

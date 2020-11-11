@@ -8,8 +8,8 @@ import (
 func main() {
 	user := models.NewUser(1, "kk", 32)
 	fmt.Println(user) //&{1 kk 32}
-	// models.AddAge(user) // 修改属性
-	user.AddAge()     // 结构的对象.方法名称()
+	// models.AddAge(user) // 修改属性    # 这是函数的表达方式
+	user.AddAge()     // 结构的对象.方法名称() # 这是方法的表达方式  两种不同的方式进行对比
 	fmt.Println(user) //&{1 kk 33}
 	// fmt.Println(models.GetName(user))
 	fmt.Println(user.GetName()) //kk
