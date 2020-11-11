@@ -49,6 +49,7 @@ func main() {
 		fmt.Printf("e: %p %v\n", &e, *e) //e: 0xc000006030 kk
 		*e = "silence"
 	}(&e1)
+	// 是通过指针修改的，所以原值就修改了
 
 	//在函数内修改引用类型
 	fmt.Printf("e2: %p %v\n", &e2, e2) //e2: 0xc0000044a0 [kk silence]

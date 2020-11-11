@@ -1,11 +1,6 @@
 // 结构体嵌套的话，可见性的问题
 package main
 
-import (
-	"fmt"
-	"visibility/models"
-)
-
 func main() {
 	// 	// fmt.Printf("%T\n", models.PublicStruct{}) //models.PublicStruct
 
@@ -21,13 +16,13 @@ func main() {
 	// fmt.Printf("%#v\n", privateVar)      //&models.privateStruct{privateAttrPr:"", PublicAttrPr:""}
 	// fmt.Println(privateVar.PublicAttrPr) //结果为空
 	// // fmt.Println(privateVar.privateAttr)  //privateVar.privateAttr undefined
-	// // 上面3行 为什么 没有闹清楚？？？？？
+	// // 上面3行 这是直接访问指针（内存地址） 所以可以访问
 
-	combindVar := models.CombindStruct{}
-	fmt.Println(combindVar.PublicStruct.PublicAttrPu) //结果为空
-	fmt.Println(combindVar.PublicAttrPu)              //结果为空
-	//fmt.Println(combindVar.privateStruct.PublicAttrPr) //cannot refer to unexported field or method privateStruct
-	fmt.Println(combindVar.PublicAttrPr) //结果为空
-	// 嵌套的话，能访问到里层的大写属性
+	// combindVar := models.CombindStruct{}
+	// fmt.Println(combindVar.PublicStruct.PublicAttrPu) //结果为空
+	// fmt.Println(combindVar.PublicAttrPu)              //结果为空
+	// //fmt.Println(combindVar.privateStruct.PublicAttrPr) //cannot refer to unexported field or method privateStruct
+	// fmt.Println(combindVar.PublicAttrPr) //结果为空
+	// // 嵌套的话，能访问到里层的大写属性
 
 }
