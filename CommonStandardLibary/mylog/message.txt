@@ -1,0 +1,1 @@
+[tool]2020/11/26 10:21:15 main.go:31: Hello go

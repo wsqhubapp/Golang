@@ -67,43 +67,40 @@ func main() {
 		return
 	}
 	fmt.Println(listener.Addr())
-	for {
-		// 2. 接收客户端请求
-		conn, err := listener.Accept()
-		if err != nil {
-			fmt.Println(err)
-		} else {
-			fmt.Printf("客户端[%s]连接成功\n", conn.RemoteAddr())
-			// 3. 与客户都端交换数据
-			for {
-				txt, err := read(conn)
-				if err != nil {
-					if err != io.EOF {
-						fmt.Println(err)
-					}
-					break
-				}
-				fmt.Printf("客户端发送: %s\n", txt)
-				txt = input("请输入信息: ")
-				if txt == "exit" {
-					break
-				}
-				err = write(conn, txt)
-				if err != nil {
-					if err != io.EOF {
-						fmt.Println(err)
-					}
-					break
-				}
 
+	// 2. 接收客户端请求
+	conn, err := listener.Accept()
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(conn.LocalAddr(), conn.RemoteAddr())
+		// 3. 与客户都端交换数据
+		for {
+			txt, err := read(conn)
+			if err != nil {
+				if err != io.EOF {
+					fmt.Println(err)
+				}
+				break
 			}
-			// conn.Write()
+			fmt.Printf("客户端发送: %s\n", txt)
+			txt = input("请输入信息: ")
+			if txt == "exit" {
+				break
+			}
+			err = write(conn, txt)
+			if err != nil {
+				if err != io.EOF {
+					fmt.Println(err)
+				}
+				break
+			}
 
-			// 4. 关闭客户端连接
-			conn.Close()
-			fmt.Println("客户端关闭")
 		}
+		// conn.Write()
 
+		// 4. 关闭客户端连接
+		conn.Close()
 	}
 
 	// 5. 关闭服务器
