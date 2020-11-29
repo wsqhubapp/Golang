@@ -10,10 +10,8 @@
 9 staticweb    路径  /static   相当 name/static/
 10 webclient  用作爬虫   模拟浏览器
 
+整理完毕
 
-
-
-vs 中 深入的去看代码 如何实现 ？？？？
 
 1. 复习
 闭包陷进  传参来解决
