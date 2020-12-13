@@ -414,7 +414,8 @@ orm =>
 类对象 => 数据库表
 
 
-mysql 的一个sql 语句  不是go的语法  if not exists  一个最终态的概念
+mysql 的一个sql 语句  不是go的语法  if not exists 
+ 一个最终态的概念
 
 
 ## 更新测试
