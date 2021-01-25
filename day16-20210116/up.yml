@@ -1,0 +1,9 @@
+groups
+- name: "target up alert"
+  rules:
+  - alert: "target is donw"
+    expr: up == 0
+    
+
+
+# 参考：https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
