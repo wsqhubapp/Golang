@@ -1,9 +1,11 @@
-groups
+groups:
 - name: "target up alert"
   rules:
-  - alert: "target is donw"
+  - alert: "target is down"
     expr: up == 0
-    
+    for: 1m # 在1分钟
 
+# ./promtool check config prometheus.yml   # SUCCESS: 0 rule files found  由可能是 prometheus.yml 文件中没有加载rules 文件
+#./promtool check rules rules/up.yml
 
 # 参考：https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
