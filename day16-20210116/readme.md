@@ -75,6 +75,8 @@ SIGHUP
 
 go中执行系统命令， 调用os的模块
 进程类似的  gopsutil
+参考：https://www.cnblogs.com/Dr-wei/p/11742378.html
+https://github.com/shirou/gopsutil
 
 
 下午内容
@@ -83,15 +85,16 @@ go中执行系统命令， 调用os的模块
 20 0.50 = 10
 
 
-图解HTTP
+建议学习 图解HTTP 这本书
 
+prometheus 安全认证  # prometheus 认证  https://prometheus.io/docs/prometheus/latest/configuration/https/
 basic auth
     认证失败:
         401
         Www-Authenticate: Basic
         autherization: Basic XXXXXX
 
-        base64(user:password)
+        base64(user:password)  # 这个到网上 能反向解析      base64 编码解码的过程
 
     nginx
     apache
@@ -108,6 +111,8 @@ autherization: Bearer TOKEN
 go http web文件服务器
 
 
+
+
 1. expoter
 
 http://ip:9100/metrics
@@ -117,6 +122,7 @@ http
 
 ip:9100
 
+配置文件 具体参数  需要去学习  总结
 
 规则：
     记录
@@ -134,6 +140,13 @@ cpu=2 instance=1.1.1.2:9100
 
 count(*) group by instance
 
+count(node_cpu_seconds_total{mode="idle"}) by (instance)  #查看有几个CPU的核心
+
+
+node_cpu_seconds_total[5m]
+node_cpu_seconds_total{mode="idle"}
+
+
 时间区间：
     5m
     5s
@@ -149,7 +162,8 @@ count(metric{label}) by ()
 
 
 sum(1-irate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance) * 100
-(1 - node_memory_MemAvailable_bytes/node_memory_MemTotal_bytes) * 100
+(1 - node_memory_MemAvailable_bytes/node_memory_MemTotal_bytes) * 100    #内存的使用率
+
 
 
 

@@ -1,0 +1,4 @@
+basic_auth_users:
+  admin: ""
+
+# prometheus 认证  https://prometheus.io/docs/prometheus/latest/configuration/https/
