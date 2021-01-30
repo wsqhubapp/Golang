@@ -165,6 +165,11 @@ sum(1-irate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance) * 100
 (1 - node_memory_MemAvailable_bytes/node_memory_MemTotal_bytes) * 100    #内存的使用率
 
 
+增加cpu使用率的命令  cat /dev/zero > /dev/null
+
+
+问题： node_cpu_procenet  这种自定义的 和其他的自定义的metrics 有什么区别
+
 
 
 

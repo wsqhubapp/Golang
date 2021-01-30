@@ -11,11 +11,14 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-type CpuCollector struct {
+// 定义一个collector  collector是一个比较基础的结构体
+// 参考 https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#Collector
+
+type CpuCollector struct { //1
 	cpuDesc *prometheus.Desc
 }
 
-func NewCpuCollector() *CpuCollector {
+func NewCpuCollector() *CpuCollector { // 3
 	return &CpuCollector{
 		cpuDesc: prometheus.NewDesc(
 			"test_cpu_percent_v2",
@@ -26,12 +29,12 @@ func NewCpuCollector() *CpuCollector {
 	}
 }
 
-func (c *CpuCollector) Describe(descs chan<- *prometheus.Desc) {
+func (c *CpuCollector) Describe(descs chan<- *prometheus.Desc) { //2.1
 	fmt.Println("describe")
 	descs <- c.cpuDesc
 }
 
-func (c *CpuCollector) Collect(metrics chan<- prometheus.Metric) {
+func (c *CpuCollector) Collect(metrics chan<- prometheus.Metric) { //2.2
 	fmt.Println("collect")
 	for i := 0; i < 4; i++ {
 		metrics <- prometheus.MustNewConstMetric(
@@ -88,7 +91,7 @@ func main() {
 		[]string{"cpu"},
 	)
 
-	fmt.Println(prometheus.LinearBuckets(0, 3, 3))
+	fmt.Println(prometheus.LinearBuckets(0, 3, 3)) //设置桶的函数，看文档
 	requestTimeH := prometheus.NewHistogramVec(
 		prometheus.HistogramOpts{
 			Name:    "request_time_h",
@@ -128,7 +131,7 @@ func main() {
 	// a. historgram, summary 常用事件更新/时间更新
 	// b. counter, gauage => 时间，事件，metrics Api调用更新
 	go func() {
-		for range time.Tick(10 * time.Second) {
+		for range time.Tick(10 * time.Second) { // 每10秒钟 执行一次  time.Tick  time.after  多少秒后执行
 			fmt.Println("totalV1 V2")
 			totalV1.Add(10)
 			totalV2.WithLabelValues("/root/").Inc()
@@ -152,3 +155,22 @@ func main() {
 	http.ListenAndServe(addr, nil)
 
 }
+
+/*
+参考
+https://prometheus.io/docs/instrumenting/clientlibs/
+这里能看到各种语言的sdk  go的 是 https://github.com/prometheus/client_golang
+https://pkg.go.dev/github.com/prometheus/client_golang/prometheus  看到的“A Basic Example”   #搜索  godoc.org 网站
+可以分析出的写一个client的 步骤   定义指标类型（有标签、无标签；类型）；  注册到prometheus； 更新指标采样值 ； 暴露httpapi ； 启动web服务；
+
+counter 有四种
+Counter
+CounterFunc  # 函数方式
+CounterOpts
+CounterVec   #可变lable
+
+
+
+
+
+*/
